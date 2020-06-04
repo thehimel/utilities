@@ -1,6 +1,7 @@
 """
 A python script to show all the file names inside the directory recursively,
 as well as get it in the clipboard.
+It will enter into all directories from the given directory.
 
 Usage:
 python get_file_names.py 'directory_path'
