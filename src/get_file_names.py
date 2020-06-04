@@ -1,7 +1,14 @@
 import os
+import sys
 
 script_name = __file__.split('\\')[-1:][0]
-path = '.'
+
+if len(sys.argv) == 1:
+    path = '.'
+else:
+    path = sys.argv[1]
+    path = path.replace('\\', '/')
+
 
 def main():
     # r=root, d=directories, f = files
