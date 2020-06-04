@@ -3,13 +3,12 @@ A python script to show all the file names inside the directory recursively,
 as well as get it in the clipboard.
 
 Usage:
-python get_file_names.py directory_path
+python get_file_names.py 'directory_path'
+Note: Make sure to pass the path within ''
 
 If no argument is passed, it will consider the present directory where the
 app is located.
 """
-
-
 import os
 import sys
 import pyperclip
