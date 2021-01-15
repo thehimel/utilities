@@ -1,0 +1,10 @@
+
+
+-----------------------------------
+Date and Time: 15/01/2021 21:00:29
+Amount spent by 1st person: 12.09
+Amount spent by 2nd person: 2.95
+Total expenditure: 15.04
+Average expenditure: 7.52
+2nd person gives 1st person: 4.57
+-----------------------------------
