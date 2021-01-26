@@ -31,12 +31,14 @@ def crop_image(file_name, display):
     ratio = width / height
     if ratio in RATIO:
         # Setting the points to keep the first half of the image
+        # Settings for left display
         if display == 'l':
             left = 0
             top = 0
             right = width/2
             bottom = height
 
+        # Settings for right display
         if display == 'r':
             left = width/2
             top = 0
