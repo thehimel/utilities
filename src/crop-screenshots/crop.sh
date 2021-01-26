@@ -1,1 +1,1 @@
-python crop.py
+python crop.py l
