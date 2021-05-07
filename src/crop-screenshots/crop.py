@@ -18,6 +18,9 @@ This script crops and saves the left half of the image.
 # Defined ratio of the source image
 RATIO = [3840 / 1080, 3286 / 1080]
 
+# Width of the left display is the divider of the 2 displays.
+DIVIDER = 1366
+
 
 def crop_image(file_name, display):
 
@@ -35,12 +38,12 @@ def crop_image(file_name, display):
         if display == 'l':
             left = 0
             top = 0
-            right = width/2
+            right = DIVIDER
             bottom = height
 
         # Settings for right display
         if display == 'r':
-            left = width/2
+            left = DIVIDER
             top = 0
             right = width
             bottom = height
