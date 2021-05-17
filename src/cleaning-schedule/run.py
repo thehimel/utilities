@@ -1,4 +1,5 @@
 import datetime
+from fpdf import FPDF
 
 
 def format_date(date):
@@ -7,39 +8,25 @@ def format_date(date):
     return date.strftime("%d-%m-%Y")
 
 
-def add_to_file(file_obj, text):
-    """ Appends a text to the file."""
-
-    file_obj.writelines(text + '\n')
-
-
 def generate(persons, start_date, days, interval):
     """Generate the output."""
 
-    file_name = "clean.txt"
-    file_obj = open(file_name, "w")
+    data = []
 
     start_date = datetime.datetime.strptime(start_date, "%d-%m-%Y").date()
     end_date = start_date + datetime.timedelta(days)  # Find the end date.
 
-    # create a cell
-    text = "Cleaning Schedule\n"
-    add_to_file(file_obj, text)
+    # text = "Cleaning Schedule\n"
 
     # Table header
-    text = (f"{'Date'.ljust(10)} {'Name'.center(10)} " +
-            f"{'Kitchen'.center(8)}{'WC'.center(8)} ")
-
-    add_to_file(file_obj, text)
+    data.append(['Date', 'Name', 'Kitchen', 'WC'])
 
     present_date = start_date
     index = 0
     while present_date <= end_date:
         date = format_date(present_date)
         person = persons[index]
-        text = (f"{date.ljust(10)} {person.center(10)} " +
-                f"{'[ ]'.center(8)} {'[ ]'.center(8)}")
-        add_to_file(file_obj, text)
+        data.append([date, person, '[  ]', '[  ]'])
 
         # Add the interval to the present date.
         present_date += datetime.timedelta(interval)
@@ -49,7 +36,7 @@ def generate(persons, start_date, days, interval):
         if index > len(persons) - 1:
             index = 0
 
-    file_obj.close()
+    return data
 
 
 def take_input():
@@ -69,10 +56,34 @@ def take_input():
     return persons, start_date, days, interval
 
 
+def generate_pdf(data):
+    pdf = FPDF()
+    pdf.set_font("Arial", size=12)
+    pdf.add_page()
+
+    col_width = pdf.w / 4.5
+    row_height = pdf.font_size
+    spacing = 2
+
+    pdf.set_font("Arial", size=16)
+    pdf.cell(w=0, h=20, txt='Cleaning Schedule', ln=1, align='C')
+
+    pdf.set_font("Arial", size=12)
+    for row in data:
+        for item in row:
+            pdf.cell(w=col_width, h=row_height*spacing,
+                     txt=item, border=1, align='C')
+        pdf.ln(row_height*spacing)
+
+    pdf.output('clean.pdf')
+
+
 if __name__ == "__main__":
     # generate(*take_input())
     persons = ['Smith', 'Ben']
     start_date = '09-05-2021'
     days = 120
     interval = 7
-    generate(persons, start_date, days, interval)
+    test_data = (persons, start_date, days, interval)
+    data = generate(*test_data)
+    generate_pdf(data)
