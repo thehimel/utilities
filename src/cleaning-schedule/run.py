@@ -71,7 +71,7 @@ def take_input():
 
 if __name__ == "__main__":
     # generate(*take_input())
-    persons = ['Smith', 'Ben ']
+    persons = ['Smith', 'Ben']
     start_date = '09-05-2021'
     days = 120
     interval = 7
