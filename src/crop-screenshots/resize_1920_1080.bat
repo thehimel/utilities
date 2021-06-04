@@ -1,0 +1,1 @@
+python resize.py 1920 1080

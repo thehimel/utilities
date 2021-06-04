@@ -12,14 +12,14 @@ Here, 'l' is for left display and 'r' is for right display.
 When there are 2 displays connected and you try to take a screenshot,
 the screenshot combines both the displays.
 
-This script crops and saves the left half of the image.
+This script crops and saves the left or right screen.
 """
 
 # Defined ratio of the source image
-RATIO = [3840 / 1080, 3286 / 1080]
+RATIO = [3840 / 1080, 3286 / 1080, 5760 / 2160]
 
 # Width of the left display is the divider of the 2 displays.
-DIVIDER = 1366
+DIVIDER = 1920
 
 
 def crop_image(file_name, display):
@@ -56,32 +56,22 @@ def crop_image(file_name, display):
         # Saving the file
         im1.save(file_name)
     else:
-        print("Ratio doesn't meet the requirements.")
+        print("INFO: Ratio doesn't meet the requirements.")
 
 
 if __name__ == '__main__':
-    min_args = 1
+    args_count = 1
     max_args = 1
     argv = sys.argv[1:]
     expected_values = ['l', 'r']
 
-    if len(argv) < min_args:
-        if min_args == 1:
-            print(f"Please enter at least {min_args} argument.")
-        else:
-            print(f"Please enter at least {min_args} arguments.")
-        sys.exit()
-
-    if len(argv) > max_args:
-        if max_args == 1:
-            print(f"Please enter exactly {max_args} argument.")
-        else:
-            print(f"Please enter exactly {max_args} arguments.")
+    if len(argv) < args_count or len(argv) > args_count:
+        print(f"ERROR: Please enter at least {args_count} argument.")
         sys.exit()
 
     display = argv[0].lower()
     if display not in expected_values:
-        print(f"Please enter a valid value from: {expected_values}")
+        print(f"ERROR: Please enter a valid value from: {expected_values}")
         sys.exit()
 
     image_files = glob.glob('*.png')
