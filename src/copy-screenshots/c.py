@@ -1,9 +1,8 @@
 #!/usr/bin/env python3.9
 
 """
-A script to copy all the files from one directory to
-a directory matching the file name that starts with the
-given text.
+A script to copy all the files from one directory to a directory
+matching the file name that starts with the given text.
 
 Usages:
 python3 c.py text
