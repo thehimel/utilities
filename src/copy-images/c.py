@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.9
 
 """
-A script to copy all the files from one directory to a directory
+A script to copy all the images from one directory to a directory
 matching the file name that starts with the given text.
 
 Usages:
