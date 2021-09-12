@@ -14,7 +14,7 @@ python3 c.py 1
 from glob import glob
 from pathlib import Path
 from sys import argv, exit
-from shutil import copytree
+from shutil import move
 
 
 def main(text) -> None:
@@ -25,22 +25,31 @@ def main(text) -> None:
 		text(str): Text to search for the files.
 	"""
 
+	src = Path.home() / "Pictures" / "vlc"
+	extensions = [".jpg", ".png"]
+	images = [p.resolve() for p in src.glob("**/*") if p.suffix in extensions]
+	header = False
+
+	if not images:
+		print(f"No image found in {src}")
+		return
+
 	# Get the first file starting with the text
-	file = glob(f'{text}*.mp4')[0]
+	file = glob(f"{text}*.mp4")[0]
 
 	# Get the file name without extension
-	directory = Path(Path(file).stem)
+	destination = Path(Path(file).stem)
 
-	# Create the directory if not exists
-	directory.mkdir(parents=True, exist_ok=True)
+	# Create the destination if not exists
+	destination.mkdir(parents=True, exist_ok=True)
 
-	dst = directory.resolve()
-	src = Path.home() / "Pictures" / "vlc"
-	src = src.resolve()
-
-	# Copy all files src to dst and it is ok if dir exists.
-	copytree(src, dst, dirs_exist_ok=True)
-	print(f"Successfully copied all files from \n{src} to \n{dst}")
+	for image in images:
+		if move(image, destination):
+			if not header:
+				print(f"Destination: {destination.resolve()}")
+				header = True
+			print(f"Moved {image}")
+	print("Task successfully completed!")
 
 
 if __name__ == "__main__":
