@@ -85,6 +85,7 @@ def main(text) -> None:
     destination.mkdir(parents=True, exist_ok=True)
 
     for image in images:
+        # TODO: Handle move if image already exists in destination.
         if move(image, destination):
             if not header:
                 print(f"Destination: {destination.resolve()}")
