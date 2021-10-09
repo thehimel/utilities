@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "C:\\Users\\sandhi\\.conda\\envs\\clean\\python.exe",
-    "python.autoComplete.extraPaths": [
-        "C:\\Users\\sandhi\\.conda\\envs\\clean\\Lib\\site-packages"
-    ],
-    "editor.minimap.enabled": true,
-}
