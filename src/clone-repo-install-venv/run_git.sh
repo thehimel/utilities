@@ -8,8 +8,8 @@
 
 if [ $1 ]
 then
-	url=$1
-	regex="^(https|git)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+).git$"
+  url=$1
+  regex="^(https|git)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+).git$"
 else
 	echo "Please pass the link to the git repo as the first argument."
 	exit 1
@@ -18,8 +18,8 @@ fi
 if [[ $url =~ $regex ]]
 then
 	git clone $url   
-    repo=$(basename $url .git)
-    cd $repo
+  repo=$(basename $url .git)
+  cd $repo
 else
 	echo "Invalid git url passed."
 	exit 1
