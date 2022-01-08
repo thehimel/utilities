@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Purpose: This script does the following tasks:
+# Purpose:
 #   - Clones a repo, checks out to the branch if given.
 #   - Installs python venv and requirements.
 # Usage: ./script.sh git_url branch_name
