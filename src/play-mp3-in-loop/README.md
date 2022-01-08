@@ -2,8 +2,7 @@
 
 ## About
 
-* Some Bluetooth speaker turns off automatically after an interval e.g. 10 minutes.
-* This feature is added to save the battery life of the speaker.
+* Some Bluetooth speaker turns off automatically after an interval e.g. 10 minutes save the battery life.
 * However, it is not convenient when the speaker used at home with a personal computer.
 * Solution
   * To prevent the speaker from turning off automatically an audio file can be played with an interval.
