@@ -1,7 +1,14 @@
 # play-mp3-in-loop
 
-Issue: Bluetooth speaker turns off automatically.
-Solution: Play an audio file with an interval.
+## About
+
+* Some Bluetooth speaker turns off automatically after an interval e.g. 10 minutes.
+* This feature is added to save the battery life of the speaker.
+* However, it is not convenient when the speaker used at home with a personal computer.
+* Prevention
+  * To prevent the speaker from turning off automatically an audio file can be played with an interval.
+  * The prevention still works if the audio is played with 0.00001% volume also.
+  * Thus, playing a audio with an interval with almost no volume, solves the issue.
 
 ## Usage
 
