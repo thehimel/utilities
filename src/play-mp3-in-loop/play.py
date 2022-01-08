@@ -1,3 +1,10 @@
+"""
+Issue: Bluetooth speaker turns off automatically.
+Solution: Play an audio file with an interval.
+The volume is almost 0.
+The purpose is to send an audio signal to the speaker.
+"""
+
 import time
 from pathlib import Path
 import pygame
