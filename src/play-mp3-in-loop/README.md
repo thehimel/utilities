@@ -10,3 +10,5 @@ Solution: Play an audio file with an interval.
 * Configure the file [play.bat](play.bat) with the python location.
   * Example: `C:\s\play\venv\Scripts\python C:\s\play\play.py`
 * Add this file to the system startup.
+  * Search for `run` and type `shell:startup`.
+  * Paste a shortcut to the file here.
