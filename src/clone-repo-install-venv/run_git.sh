@@ -17,8 +17,8 @@ fi
 
 if [[ $url =~ $regex ]]
 then
-	git clone $url   
-  repo=$(basename $url .git)
+	git clone $url
+  repo=$(basename $url .git)  # get the repository name
   cd $repo
 else
 	echo "Invalid git url passed."
