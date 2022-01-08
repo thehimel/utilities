@@ -1,1 +1,1 @@
-C:\s\play\venv\Scripts\python C:\s\play\play.py
+C:\s\play\venv\Scripts\python C:\s\play\play.py C:\s\play\audio.mp3
