@@ -15,13 +15,13 @@ import sys
 import pyperclip
 
 
-script_name = __file__.split('\\')[-1:][0]
+script_name = __file__.split("\\")[-1:][0]
 
 if len(sys.argv) == 1:
-    path = '.'
+    path = "."
 else:
     path = sys.argv[1]
-    path = path.replace('\\', '/')
+    path = path.replace("\\", "/")
 
 
 def main():
@@ -34,9 +34,9 @@ def main():
                 files.append(file)
 
     # Writing all file names into a string to paste in the clipboard
-    string = ''
+    string = ""
     for file in files:
-        string = string + file + '\n'
+        string = string + file + "\n"
 
     pyperclip.copy(string)
     pyperclip.paste()
@@ -44,5 +44,5 @@ def main():
     print(string)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

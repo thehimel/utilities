@@ -28,7 +28,7 @@ def main(argv):
     first = float(argv[0])
     second = float(argv[1])
 
-    total_half = (first+second)/2
+    total_half = (first + second) / 2
 
     print_write("\n-----------------------------------")
     # dd/mm/YY H:M:S
@@ -40,8 +40,7 @@ def main(argv):
     print_write(f"Average expenditure: {((first + second)/2):.2f}")
 
     if second < total_half:
-        print_write(
-            f"2nd person gives 1st person: {(total_half - second):.2f}")
+        print_write(f"2nd person gives 1st person: {(total_half - second):.2f}")
     elif first < total_half:
         print_write(f"1st person gives 2nd person: {(total_half - first):.2f}")
     else:

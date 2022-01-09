@@ -25,15 +25,15 @@ def resize_image(file_name, width, height):
         return
 
     left, top, right, bottom = 0, 0, width, height
-    
+
     if im_width > width:
-        left = im_width/2 - width/2
-        right = im_width/2 + width/2
+        left = im_width / 2 - width / 2
+        right = im_width / 2 + width / 2
 
     if im_height > height:
-        buffer = 48 # There is a buffer for some systems
-        top = im_height/2 - height/2 - buffer
-        bottom = im_height/2 + height/2 - buffer
+        buffer = 48  # There is a buffer for some systems
+        top = im_height / 2 - height / 2 - buffer
+        bottom = im_height / 2 + height / 2 - buffer
 
     # Crop the image
     im1 = im.crop((left, top, right, bottom))
@@ -44,7 +44,7 @@ def resize_image(file_name, width, height):
     im1.save(file_name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args_count = 2
     argv = sys.argv[1:]
 
@@ -56,8 +56,7 @@ if __name__ == '__main__':
     res = (first, second) if first > second else (second, first)
     print(*res)
 
-
-    image_files = glob.glob('*.png')
+    image_files = glob.glob("*.png")
     if image_files:
         for file_name in image_files:
             resize_image(file_name, *res)

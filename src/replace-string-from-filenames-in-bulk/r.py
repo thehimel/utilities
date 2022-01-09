@@ -1,4 +1,3 @@
-
 """
 A python script to replace a particular string from the file names in all files
 of the current directory recursively.
@@ -19,20 +18,20 @@ the file format, we need to consider the lowercase of the the file name.
 import os
 import sys
 
-script_name = __file__.split('\\')[-1:][0]
+script_name = __file__.split("\\")[-1:][0]
 
 if len(sys.argv) == 1:
-    path = '.'
+    path = "."
 else:
     path = sys.argv[1]
-    path = path.replace('\\', '/')
+    path = path.replace("\\", "/")
 
-file_formats = 'mp4 mkv'
-old_string = ' - YouTube'
-new_string = ''
+file_formats = "mp4 mkv"
+old_string = " - YouTube"
+new_string = ""
 
 # Create a list like ['mp4', 'mkv', 'avi']
-file_formats = file_formats.split(' ')
+file_formats = file_formats.split(" ")
 
 
 def get_new_file_name(file_name):
@@ -63,5 +62,5 @@ def main():
                     print(file_name, new_file_name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

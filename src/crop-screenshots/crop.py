@@ -35,14 +35,14 @@ def crop_image(file_name, display):
     if ratio in RATIO:
         # Setting the points to keep the first half of the image
         # Settings for left display
-        if display == 'l':
+        if display == "l":
             left = 0
             top = 0
             right = DIVIDER
             bottom = height
 
         # Settings for right display
-        if display == 'r':
+        if display == "r":
             left = DIVIDER
             top = 0
             right = width
@@ -59,11 +59,11 @@ def crop_image(file_name, display):
         print("INFO: Ratio doesn't meet the requirements.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args_count = 1
     max_args = 1
     argv = sys.argv[1:]
-    expected_values = ['l', 'r']
+    expected_values = ["l", "r"]
 
     if len(argv) < args_count or len(argv) > args_count:
         print(f"ERROR: Please enter at least {args_count} argument.")
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         print(f"ERROR: Please enter a valid value from: {expected_values}")
         sys.exit()
 
-    image_files = glob.glob('*.png')
+    image_files = glob.glob("*.png")
     if image_files:
         for file_name in image_files:
             crop_image(file_name, display)
