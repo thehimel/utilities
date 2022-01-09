@@ -69,6 +69,10 @@ python play.py audio.mp3 -i 4 -v 0.9
 
 * Remove the shortcut to the file `play.bat` from system startup.
 
+## Tips
+
+* You can add the program directory to the environment variable to play or stop from the terminal.
+
 ## Useful Links
 
 * [sound-volume-in-python](https://stackoverflow.com/questions/48337864/sound-volume-in-python)
