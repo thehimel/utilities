@@ -56,7 +56,7 @@ python play.py audio.mp3 -i 4 -v 0.9
 
 ## How to Stop
 
-* run `taskkill /F /IM pythonw.exe /T`
+* run `taskkill /F /IM pythonw.exe /T` or execute `stop.bat`.
   * Explanation: `taskkill /F {force} /IM {image name} {process name} /T {terminate}`
   * Notes
     * This will kill all the processes of `pythonw.exe`.
@@ -64,6 +64,10 @@ python play.py audio.mp3 -i 4 -v 0.9
 * Go to `Task Manager > Details >` ![pythonw.exe](img/py.jpg) `> End task`
 * You can be sure if the location property is linked to the correct location.
 > ![pythonw.exe - properties](img/py-props.jpg)
+
+## How to Uninstall
+
+* Remove the shortcut to the file `play.bat` from system startup.
 
 ## Useful Links
 
