@@ -1,20 +1,39 @@
-import datetime
+"""
+Generate cleaning schedule based on persons, start date, number of days, and interval.
+"""
+
+from string import punctuation
+from datetime import datetime, timedelta
+from argparse import ArgumentParser, ArgumentTypeError
 from fpdf import FPDF
 
 
-def format_date(date):
-    """Format the date as DD-MM-YYYY."""
+def format_date(date: datetime.date) -> str:
+    """
+    Convert date object to string with format 'DD-MM-YYYY'.
+
+    :param date: Date as datetime object.
+    :return: Date in string type.
+    """
 
     return date.strftime("%d-%m-%Y")
 
 
-def generate(persons, start_date, days, interval):
-    """Generate the output."""
+def generate(persons: list, start_date: datetime.date, days: int, interval: int) -> list[list]:
+    """
+    Generate the output.
 
+    :param persons: Name(s) of the person(s).
+    :param start_date: Starting date.
+    :param days: Number of days.
+    :param interval: Cleaning interval.
+    :return: List of data.
+    """
+
+    persons = [person.strip(punctuation).capitalize() for person in persons]
     data = []
-    start_date = datetime.datetime.strptime(start_date, "%d-%m-%Y").date()
-    end_date = start_date + datetime.timedelta(days)  # Find the end date.
-    data.append(["Date", "Bin", "Kitchen and WC"])  # Table header
+    end_date = start_date + timedelta(days)  # Find the end date.
+    data.append(["Date", "Bin", "Kitchen and WC"])  # Table header.
     present_date = start_date
     bin_index = kwc_index = count = 0
 
@@ -29,7 +48,7 @@ def generate(persons, start_date, days, interval):
         else:
             kitchen = ""
         data.append([date, f"{bin_person} [  ]", kitchen])
-        present_date += datetime.timedelta(interval)
+        present_date += timedelta(interval)
         bin_index += 1
         if bin_index > len(persons) - 1:
             bin_index = 0
@@ -38,24 +57,12 @@ def generate(persons, start_date, days, interval):
     return data
 
 
-def take_input():
-    person_count = int(input("Number of persons = "))
-    persons = []
+def generate_pdf(data: list[list]) -> None:
+    """
+    Generate the pdf file.
 
-    n = 0
-    while n < person_count:
-        name = input(f"Name of person {n+1} = ")
-        persons.append(name)
-        n += 1
-
-    start_date = input("Start date (DD-MM-YYYY) = ")
-    days = int(input("Number of days = "))
-    interval = int(input("Interval in days = "))
-
-    return persons, start_date, days, interval
-
-
-def generate_pdf(data):
+    :param data: List of data.
+    """
     pdf = FPDF()
     pdf.set_font("Arial", size=12)
     pdf.add_page()
@@ -76,12 +83,58 @@ def generate_pdf(data):
     pdf.output("clean.pdf")
 
 
+def valid_date(date: str) -> [datetime, ValueError]:
+    """Get a date if the string is passed in valid format, else raise error.
+
+    :param date: Starting date in format 'DD-MM-YYYY'.
+    :return: Returns a date or raises error.
+    """
+    try:
+        return datetime.strptime(date, "%d-%m-%Y").date()
+    except ValueError as error:
+        msg = f"Invalid date: {date}. Format: DD-MM-YYYY."
+        raise ArgumentTypeError(msg) from error
+
+
 if __name__ == "__main__":
-    # generate(*take_input())
-    persons = ["Smith", "Ben"]
-    start_date = "10-10-2021"
-    days = 180
-    interval = 7
-    test_data = (persons, start_date, days, interval)
-    data = generate(*test_data)
-    generate_pdf(data)
+    default_days, default_interval, today = 180, 7, datetime.now().date()
+    parser = ArgumentParser(description="Generate cleaning schedule.")
+
+    parser.add_argument(
+        "-p",
+        "--persons",
+        nargs="+",
+        type=str,
+        help="Names of the person(s) separated by space.",
+        required=True,
+    )
+
+    parser.add_argument(
+        "-s",
+        "--start_date",
+        type=valid_date,
+        default=today,
+        help=f"Starting date in format 'DD-MM-YYYY'. Default = {format_date(today)} (Today)",
+        required=False,
+    )
+
+    parser.add_argument(
+        "-d",
+        "--days",
+        type=int,
+        default=default_days,
+        help=f"Number of days. Default = {default_days}",
+        required=False,
+    )
+
+    parser.add_argument(
+        "-i",
+        "--interval",
+        type=int,
+        default=default_interval,
+        help=f"Cleaning interval in days. Default = {default_interval}",
+        required=False,
+    )
+
+    args = parser.parse_args()
+    generate_pdf(generate(args.persons, args.start_date, args.days, args.interval))
