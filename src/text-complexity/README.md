@@ -4,6 +4,7 @@ An app to determine the complexity of text.
 
 ## Useful Resources
 
+* [Validate Path to a Directory in the argparse Argument](https://stackoverflow.com/questions/38834378/path-to-a-directory-as-argparse-argument)
 * [Fetch List of Files Recursively in a Directory](https://stackoverflow.com/questions/3964681/find-all-files-in-a-directory-with-extension-txt-in-python)
 * [Read a File Character by Character](http://www.java2s.com/Code/Python/File/Openafileandreadcharbychar.htm)
 * [punctuation in Python](https://www.geeksforgeeks.org/string-punctuation-in-python/)
@@ -18,6 +19,7 @@ An app to determine the complexity of text.
 
 ## Tags
 
+- argparse
 - recursive file search
 - JSON
 - files

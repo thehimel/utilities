@@ -2,26 +2,29 @@
 Analyze the complexity of texts.
 """
 
-import json
-from pathlib import Path
-from operator import itemgetter
-from read import read
-from definitions import umlaut, characters, umlaut_percentage, output_directory
+
+from argparse import ArgumentParser
+from validators import valid_dir
+from analysis import analyze
+
 
 if __name__ == "__main__":
-    results = []
-    input_files = list(Path('.').glob('**/*.txt'))  # Fetch list of files recursively.
-    for input_file in input_files:
-        result = read(file_path=input_file)
-        if result[characters]:
-            results.append({
-                "file_name": input_file.name,
-                "file_path": input_file.as_posix(),
-                umlaut_percentage: round(result[umlaut] / result[characters] * 100, 2),
-                "result": result,
-            })
-
-    Path(output_directory).mkdir(parents=True, exist_ok=True)  # Create nested directories if they do not exist.
-    output_path = Path(output_directory) / "results.json"
-    with open(output_path, 'w', encoding="utf-8") as output_file:
-        json.dump(sorted(results, key=itemgetter(umlaut_percentage)), output_file, indent=4)
+    parser = ArgumentParser(description="Analyze the complexity of texts.")
+    parser.add_argument(
+        "-i",
+        "--input_directory",
+        type=valid_dir,
+        default=".",
+        help="Path to the input directory. Default = Current Directory.",
+        required=False,
+    )
+    parser.add_argument(
+        "-o",
+        "--output_directory",
+        type=valid_dir,
+        default="output",
+        help="Path to the output directory. Default = Current Directory/output.",
+        required=False,
+    )
+    args = parser.parse_args()
+    analyze(input_directory=args.input_directory, output_directory=args.output_directory)
