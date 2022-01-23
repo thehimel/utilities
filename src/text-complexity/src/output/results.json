@@ -1,0 +1,30 @@
+[
+    {
+        "file_name": "text_level2.txt",
+        "file_path": "input/level1/text_level2.txt",
+        "umlaut_percentage": 20.0,
+        "result": {
+            "umlaut": 2,
+            "characters": 10,
+            "umlaut_percentage": 0,
+            "word_len": {
+                "4": 2,
+                "2": 1
+            }
+        }
+    },
+    {
+        "file_name": "text.txt",
+        "file_path": "input/text.txt",
+        "umlaut_percentage": 33.33,
+        "result": {
+            "umlaut": 2,
+            "characters": 6,
+            "umlaut_percentage": 0,
+            "word_len": {
+                "4": 1,
+                "2": 1
+            }
+        }
+    }
+]

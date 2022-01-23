@@ -2,11 +2,12 @@
 Analyze a file and return the result in dictionary format.
 """
 
+from pathlib import Path
 from string import punctuation
 from definitions import umlaut_characters, umlaut, characters, word_len, umlaut_percentage
 
 
-def read(file_path: str) -> dict[str, int | dict | float]:
+def read(file_path: Path) -> dict[str, int | dict | float]:
     """
     Analyze a file.
 
@@ -22,8 +23,6 @@ def read(file_path: str) -> dict[str, int | dict | float]:
                 if word_count:
                     result[word_len][word_count] = result[word_len].get(word_count, 0) + 1
                 result[word_len] = dict(sorted(result[word_len].items(), reverse=True))
-                if result[characters]:
-                    result[umlaut_percentage] = round(result[umlaut] / result[characters] * 100, 2)
                 return result
 
             if char in punctuation or char.isspace():
