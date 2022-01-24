@@ -16,7 +16,7 @@ def read(file_path: Path) -> dict[str, int | dict | float]:
     :param file_path: Path of the file.
     :return: Result in dictionary format.
     """
-    result = {umlaut: 0, characters: 0, umlaut_percentage: 0, word_len: {}}
+    result = {umlaut: 0, characters: 0, word_len: {}}
     word_count = 0
     with open(file=file_path, encoding="utf-8") as input_file:
         while True:
