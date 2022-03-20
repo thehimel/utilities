@@ -1,0 +1,1 @@
+START /MIN C:\s\alerts\venv\Scripts\pythonw C:\s\alerts\src\alerts.py
