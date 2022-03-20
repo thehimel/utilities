@@ -17,7 +17,7 @@ if __name__ == "__main__":
     speech_drink_water = gTTS(text=text, lang=language, slow=False)
     path_drink_water = Path("speech_drink_water.mp3").as_posix()
     speech_drink_water.save(path_drink_water)
-    interval_drink_water = 10
+    interval_drink_water = 3600
     player_drink_water = AudioPlayer(path_drink_water)
 
     while True:
