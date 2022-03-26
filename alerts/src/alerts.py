@@ -12,7 +12,6 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 def audio(text: str, title: str) -> AudioPlayer:
     """Convert text to audio."""
-
     title = f"{title}.mp3" if not title.endswith(".mp3") else title
     audio_path = Path("audio")
     audio_path.mkdir(parents=True, exist_ok=True)  # Create directory if doesn't exists.
