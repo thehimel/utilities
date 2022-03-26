@@ -5,7 +5,6 @@ Plays alerts for given tasks.
 import json
 import logging
 from pathlib import Path
-from datetime import datetime
 import pytz
 from gtts import gTTS
 from audioplayer import AudioPlayer
@@ -53,7 +52,6 @@ def handle() -> None:
                 schedule_types["interval"],
                 [audio_files[title], schedule],  # function parameters
                 seconds=schedule["interval"],
-                next_run_time=datetime.now()
             )
         elif schedule["type"].lower() == schedule_types["cron"]:
             title = schedule["title"]
