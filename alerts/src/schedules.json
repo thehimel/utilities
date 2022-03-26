@@ -1,0 +1,17 @@
+[
+    {
+        "title": "drink_water",
+        "message": "Please drink water!",
+        "type": "interval",
+        "interval": 3600
+    },
+    {
+        "title": "eat_fruits",
+        "message": "Please eat fruits!",
+        "type": "cron",
+        "time": {
+            "hour": 16,
+            "minute": 0
+        }
+    }
+]
