@@ -1,0 +1,1 @@
+heroku builds:cache:purge -a getconsole --confirm getconsole
