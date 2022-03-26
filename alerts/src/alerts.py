@@ -2,24 +2,46 @@
 Plays alerts for given tasks.
 """
 
-import time
-from gtts import gTTS
 from pathlib import Path
+from datetime import datetime
+import pytz
+from gtts import gTTS
 from audioplayer import AudioPlayer
+from apscheduler.schedulers.blocking import BlockingScheduler
+
+
+def audio(text: str, title: str) -> AudioPlayer:
+    """Convert text to audio."""
+
+    title = f"{title}.mp3" if not title.endswith(".mp3") else title
+    audio_path = Path("audio")
+    audio_path.mkdir(parents=True, exist_ok=True)  # Create directory if doesn't exists.
+    audio_path = Path(audio_path / title).as_posix()
+    speech = gTTS(text=text, lang='en', slow=False)  # Due to slow=False, the converted audio should have a high speed.
+    speech.save(audio_path)
+    return AudioPlayer(audio_path)
+
+
+TONE = "Ten tena!" * 3
+audio_drink_water = audio(text=f"{TONE} Please drink water!", title="drink_water")
+audio_eat_fruits = audio(text=f"{TONE} Please eat fruits!", title="eat_fruits")
+
+
+def drink_water():
+    """Play audio to drink water."""
+    audio_drink_water.play(block=False)
+
+
+def eat_fruits():
+    """Play audio to eat fruits."""
+    audio_eat_fruits.play(block=False)
 
 
 if __name__ == "__main__":
-    """Main function."""
-
-    text = 'Ten tena! Ten tena! Ten tena! Please drink water!'
-    language = 'en'
-    # Due to slow=False , the converted audio should  have a high speed
-    speech_drink_water = gTTS(text=text, lang=language, slow=False)
-    path_drink_water = Path("speech_drink_water.mp3").as_posix()
-    speech_drink_water.save(path_drink_water)
-    interval_drink_water = 3600
-    player_drink_water = AudioPlayer(path_drink_water)
-
-    while True:
-        player_drink_water.play(block=False)
-        time.sleep(interval_drink_water)
+    try:
+        scheduler = BlockingScheduler(timezone=pytz.timezone("Europe/Berlin"))
+        scheduler.add_job(eat_fruits, "cron", hour=16, minute=0)  # Run this job everyday at 16:00 PM.
+        scheduler.add_job(drink_water, "interval", seconds=3600, next_run_time=datetime.now())
+        scheduler.start()
+    except KeyboardInterrupt:
+        print("Stay healthy!")
