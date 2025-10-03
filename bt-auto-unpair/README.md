@@ -12,7 +12,6 @@ brew install blueutil
 
 ```bash
 chmod +x ./unpair_dji_mic.sh
-chmod +x ./unpair_dji_mic_v2.sh
 ```
 
 > Use `blueutil --paired` to find the Mac address for the first time.
@@ -48,10 +47,8 @@ This will:
 Run the script manually in the background:
 
 ```bash
-./unpair_dji_mic_v2.sh &
+./unpair_dji_mic.sh &
 ```
-
-> **Note**: The service uses `unpair_dji_mic_v2.sh` which includes proper PATH setup for Homebrew. The original `unpair_dji_mic.sh` is kept for reference.
 
 ## How It Works
 
