@@ -16,7 +16,6 @@ while true; do
         blueutil --unpair "$DEVICE_MAC"
 
         echo "$(date): Device unpaired."
-        break
     fi
     sleep 5
 done
