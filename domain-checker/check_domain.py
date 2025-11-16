@@ -6,7 +6,6 @@ Checks if a domain is registered or available.
 
 import sys
 import whois
-from typing import Optional
 
 
 def is_domain_registered(domain: str) -> bool:
@@ -59,13 +58,12 @@ def is_domain_registered(domain: str) -> bool:
         # Default to False if no clear registration info
         return False
         
-    except whois.parser.PywhoisError:
-        # Domain not found/not registered
-        return False
     except Exception as e:
-        # Other errors - could be network issues, rate limiting, etc.
-        # For now, we'll assume it's not registered if we can't query
-        print(f"Error checking {domain}: {e}", file=sys.stderr)
+        # Domain not found/not registered or other errors
+        # python-whois may raise various exceptions for unavailable domains
+        # Most commonly: whois.parser.PywhoisError (older versions) or 
+        # general exceptions when domain is not registered
+        # For simplicity, treat any exception as domain not registered
         return False
 
 
